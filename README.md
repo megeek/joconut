@@ -22,6 +22,12 @@ That's it! Now, all your local links will not cause page refresh. Remote links w
 - Detects and loads scripts and stylesheets from fetched pages, if they do not exist in the current one
 - HTML5 History API support with fallback to location.hash
 
+# How is it different from the existing PJAX plugin?
+
+1. 1kb minified and gzipped
+2. Auto-detects and loads JS and CSS from fetched pages, if needed
+3. No need to set up or configure
+
 # Tests
 
 You should have **node** to be installed. ```cd test && npm i connect route66 && node server.js```. Navigate to http://localhost:3000 after that and play.

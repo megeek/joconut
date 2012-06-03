@@ -87,7 +87,7 @@ _History.init();
 
 fn = function($) {
   var fill, get, isLocal, scripts, stylesheets;
-  isLocal = new RegExp("^(" + (location.origin.replace(/\:/g, '\\:').replace(/\//g, '\\/')) + "|\\.|\\/|[A-Z0-9_])", 'i');
+  isLocal = new RegExp("^(" + location.protocol + "\/\/" + location.host + "|\\.|\\/|[A-Z0-9_])", 'i');
   $.expr[':'].local = function(e) {
     var href, local;
     local = false;
@@ -151,18 +151,28 @@ fn = function($) {
   };
   get = function(options, callback) {
     return $.ajax({
+      cache: false,
       url: options.url,
       type: 'GET',
+      data: options.data,
       success: function(response) {
-        return callback(false, response);
+        return fill(response, function() {
+          if (options.history) {
+            _History.push({
+              url: options.url
+            }, false, options.url);
+          }
+          if (callback) {
+            return callback();
+          }
+        });
       }
     });
   };
   _History.on('change', function(e) {
     return get({
-      url: e.state.url
-    }, function(err, response) {
-      return fill(response);
+      url: e.state.url,
+      history: false
     });
   });
   scripts = [];
@@ -179,16 +189,11 @@ fn = function($) {
       el = $(this);
       return el.click(function(e) {
         var url;
-        url = el.attr('href');
         e.preventDefault();
+        url = el.attr('href');
         return get({
-          url: url
-        }, function(err, response) {
-          return fill(response, function() {
-            return _History.push({
-              url: url
-            }, false, url);
-          });
+          url: url,
+          history: true
         });
       });
     });

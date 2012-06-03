@@ -13,6 +13,19 @@ router.get('/', function(req, res) {
   });
 });
 
+router.post('/', function(req, res) {
+  res.writeHead(301, {
+    Location: '/post'
+  });
+  return res.end();
+});
+
+router.get('/post', function(req, res) {
+  return fs.readFile("" + __dirname + "/post.html", function(err, source) {
+    return res.end(source.toString());
+  });
+});
+
 router.get('/sub', function(req, res) {
   return fs.readFile("" + __dirname + "/sub.html", function(err, source) {
     return res.end(source.toString());

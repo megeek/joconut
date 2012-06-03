@@ -89,14 +89,17 @@ fn = ($) ->
 	
 	get = (options, callback) -> # GET
 		$.ajax
+			cache: no
 			url: options.url
 			type: 'GET'
+			data: options.data
 			success: (response) ->
-				callback false, response
+				fill response, ->
+					_History.push { url: options.url }, false, options.url if options.history
+					do callback if callback
 	
 	_History.on 'change', (e) ->
-		get url: e.state.url, (err, response) -> # just loading URL
-			fill response
+		get url: e.state.url, history: no # just loading an URL
 	
 	scripts = []
 	$('script').each ->
@@ -110,12 +113,10 @@ fn = ($) ->
 		$('a:local').each ->
 			el = $ @
 			el.click (e) ->
+				do e.preventDefault
+				
 				url = el.attr 'href'
-				e.preventDefault()
-				get url: url, (err, response) ->
-					fill response, ->
-						_History.push { url: url }, false, url
-	
+				get url: url, history: yes
 	$ ->
 		$.joconut() # auto-initialization
 		
