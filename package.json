@@ -2,7 +2,7 @@
   "name": "jquery.Joconut",
   "title": "Joconut",
   "description": "Never load a full page on every request again.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/vdemedes/joconut",
   "author": {
     "name": "Vadim Demedes",

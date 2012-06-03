@@ -1,4 +1,4 @@
-/*! Joconut - v0.1.0 - 2012-06-03
+/*! Joconut - v0.1.1 - 2012-06-03
 * https://github.com/vdemedes/joconut
 * Copyright (c) 2012 Vadim Demedes; Licensed MIT */
 
