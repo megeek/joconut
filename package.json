@@ -1,0 +1,29 @@
+{
+  "name": "jquery.Joconut",
+  "title": "Joconut",
+  "description": "Never load a full page on every request again.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/vdemedes/joconut",
+  "author": {
+    "name": "Vadim Demedes",
+    "email": "sbioko@gmail.com",
+    "url": "http://github.com/vdemedes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vdemedes/joconut.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vdemedes/joconut/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/vdemedes/joconut/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": "1.7"
+  },
+  "keywords": ["pjax", "ajax"]
+}
